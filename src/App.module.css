@@ -1,0 +1,14 @@
+.box {
+  background-color: skyblue;
+  width: 500px;
+  height: auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.heading {
+  color: black;
+  font-size: 30px;
+  background-color: yellow;
+  padding: 10px;
+}
