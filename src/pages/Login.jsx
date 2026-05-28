@@ -15,8 +15,58 @@ import {
     FaLock,
     FaGoogle,
 } from "react-icons/fa";
+import { useState } from "react";
+import { CiWarning } from "react-icons/ci";
 
 const Login = () => {
+
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+        remember: false,
+    });
+    const [error, setError] = useState("")
+
+
+
+    // HANDLE INPUT CHANGE
+
+    const handleChange = (e) => {
+
+        const { name, value, type, checked } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: type === "checkbox" ? checked : value,
+        }));
+    };
+
+
+
+    // HANDLE SUBMIT
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+
+        console.log(formData);
+
+        if (!formData.email || !formData.password) {
+            setError("Please fill all input fields")
+            return
+        } else {
+
+            localStorage.setItem("user", JSON.stringify(formData));
+            setError("")
+            alert("Login Successful");
+
+            // API CALL HERE
+        }
+
+
+    };
+
+
 
     return (
 
@@ -33,6 +83,7 @@ const Login = () => {
                     <div className="absolute w-96 h-96 bg-white/10 rounded-full -bottom-24 -right-24"></div>
 
                     <div className="relative z-10">
+
 
                         <h1 className="text-3xl font-extrabold leading-tight">
                             Welcome Back
@@ -85,11 +136,44 @@ const Login = () => {
 
                     </div>
 
+                    {
+                        error && (
 
+                            <div className="bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-2xl shadow-sm flex items-start gap-3 animate-pulse">
+
+                                {/* ICON */}
+
+                                <div className="bg-red-100 p-2 rounded-full">
+                                    <CiWarning />
+                                </div>
+
+
+
+                                {/* MESSAGE */}
+
+                                <div>
+
+                                    <h3 className="font-semibold text-sm">
+                                        Something went wrong
+                                    </h3>
+
+                                    <p className="text-sm mt-1">
+                                        {error}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        )
+                    }
 
                     {/* FORM */}
 
-                    <form className="mt-10 space-y-6 ">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="mt-10 space-y-6"
+                    >
 
                         {/* EMAIL */}
 
@@ -105,6 +189,9 @@ const Login = () => {
 
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     placeholder="Enter your email"
                                     className="w-full outline-none px-3 text-sm"
                                 />
@@ -129,6 +216,9 @@ const Login = () => {
 
                                 <input
                                     type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
                                     placeholder="Enter your password"
                                     className="w-full outline-none px-3 text-sm"
                                 />
@@ -145,7 +235,12 @@ const Login = () => {
 
                             <label className="flex items-center gap-2 text-gray-600">
 
-                                <input type="checkbox" />
+                                <input
+                                    type="checkbox"
+                                    name="remember"
+                                    checked={formData.remember}
+                                    onChange={handleChange}
+                                />
 
                                 Remember me
 
@@ -165,7 +260,8 @@ const Login = () => {
                         {/* LOGIN BUTTON */}
 
                         <button
-                            className="w-full bg-black hover:bg-gray-600 text-white py-4 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl transition duration-300"
+                            type="submit"
+                            className="w-full bg-black hover:bg-gray-700 text-white py-4 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl transition duration-300"
                         >
                             Login
                         </button>

@@ -7,8 +7,56 @@ import {
     FaLock,
     FaGoogle,
 } from "react-icons/fa";
+import { useState } from "react";
+import { CiWarning } from "react-icons/ci";
 
 const Register = () => {
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
+    const [error, setError] = useState("")
+
+
+    // HANDLE INPUT CHANGE
+
+    const handleChange = (e) => {
+
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+
+
+    // HANDLE SUBMIT
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+
+        // PASSWORD MATCH CHECK
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+        if (!formData.name || !formData.email || !formData.password) {
+            setError("Please fill all input fields")
+            return
+        }
+        console.log(formData);
+        // API CALL HERE
+        localStorage.setItem("user", JSON.stringify(formData));
+        alert("Account Created Successfully");
+    };
 
     return (
 
@@ -82,11 +130,44 @@ const Register = () => {
 
                     </div>
 
+                    {
+                        error && (
 
+                            <div className="bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-2xl shadow-sm flex items-start gap-3 animate-pulse">
+
+                                {/* ICON */}
+
+                                <div className="bg-red-100 p-2 rounded-full">
+                                    <CiWarning />
+                                </div>
+
+
+
+                                {/* MESSAGE */}
+
+                                <div>
+
+                                    <h3 className="font-semibold text-sm">
+                                        Something went wrong
+                                    </h3>
+
+                                    <p className="text-sm mt-1">
+                                        {error}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        )
+                    }
 
                     {/* FORM */}
 
-                    <form className="mt-10 space-y-5">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="mt-10 space-y-5"
+                    >
 
                         {/* NAME */}
 
@@ -102,6 +183,9 @@ const Register = () => {
 
                                 <input
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     placeholder="Enter your name"
                                     className="w-full outline-none px-3 text-sm"
                                 />
@@ -126,6 +210,9 @@ const Register = () => {
 
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     placeholder="Enter your email"
                                     className="w-full outline-none px-3 text-sm"
                                 />
@@ -150,6 +237,9 @@ const Register = () => {
 
                                 <input
                                     type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
                                     placeholder="Enter password"
                                     className="w-full outline-none px-3 text-sm"
                                 />
@@ -174,6 +264,9 @@ const Register = () => {
 
                                 <input
                                     type="password"
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
                                     placeholder="Confirm password"
                                     className="w-full outline-none px-3 text-sm"
                                 />
@@ -187,7 +280,8 @@ const Register = () => {
                         {/* BUTTON */}
 
                         <button
-                            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl transition duration-300"
+                            type="submit"
+                            className="w-full bg-black hover:bg-gray-700 text-white py-4 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl transition duration-300"
                         >
                             Create Account
                         </button>

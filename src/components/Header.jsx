@@ -24,9 +24,16 @@ import { setSearch } from "../store/reducers/productSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
+    const user = JSON.parse(
+        localStorage.getItem("user")
+    );
 
     const { search } = useSelector(
         (state) => state.products
+    );
+
+    const { cartItems } = useSelector(
+        (state) => state.cart
     );
     return (
         <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -136,18 +143,32 @@ const Header = () => {
                         >
                             <FaShoppingCart className="text-xl text-gray-700 hover:text-green-600 transition duration-300" />
 
-                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 py-0.05 rounded-full">
-                                2
-                            </span>
+                            {cartItems.length > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 py-0.05 rounded-full">
+                                {
+                                    cartItems.reduce(
+                                        (acc, item) =>
+                                            acc + item.quantity,
+                                        0
+                                    )
+                                }
+                            </span>}
                         </Link>
 
 
 
                         {/* USER */}
 
-                        <Link to="/profile">
-                            <FaUserCircle className="text-xl text-gray-700 hover:text-green-600 transition duration-300" />
-                        </Link>
+                        {
+                            user ?
+                                <Link to="/profile">
+                                    <FaUserCircle className="text-xl text-gray-700 hover:text-green-600 transition duration-300" />
+
+                                </Link>
+                                :
+                                <Link to="/login" className="text-gray-700 hover:text-green-600">
+                                    Login
+                                </Link>
+                        }
 
                     </div>
 

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 import { FaStar, FaRegStar } from "react-icons/fa6";
+import Button from "./Button";
 
 
 const Card = ({ data }) => {
@@ -15,7 +16,7 @@ const Card = ({ data }) => {
         //     <p>Rs.{data.price}</p>
         //     <h2>{data.title.slice(0, 25)}...</h2>
         // </div>
-        <div className="w-44 h-72 bg-white rounded-sm overflow-hidden shadow-xl  group flex flex-col ">
+        <div className="w-44 h-80 bg-white rounded-sm overflow-hidden shadow-xl  group flex flex-col ">
 
             {/* Image Section */}
             <div className="bg-gray-100 flex items-center justify-center p-5 h-40 overflow-hidden shrink-0">
@@ -60,23 +61,18 @@ const Card = ({ data }) => {
                 </div>
 
                 {/* Price + Button */}
-                <div className="flex items-center justify-between flex-col mt-1">
-
-                    <p className="text-xs">
-
+                <div className=" mt-0.5">
+                    <p className="mb-1">
                         <span className="font-bold  text-green-600">
                             ${data.price}
                         </span>
-                        <span className=" text-gray-400 line-through">
+                        <span className=" text-sm font-bold text-gray-400 line-through ml-1.5">
                             $
                             {(data?.price * 1.2).toFixed(0)}
                         </span>
                     </p>
-
-                    <button className="bg-black text-white text-xs px-2 py-0.5 rounded-md text-[10px] hover:bg-gray-800 transition">
-                        Add To Cart
-                    </button>
-
+                    {/* <Button data={data} /> */}
+                    <Button data={{ ...data, quantity: 1 }} />
                 </div>
 
             </div>

@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css"
 import SingleProduct from "./pages/SingleProduct";
 import Register from "./pages/Register";
+import Cart from "./pages/Cart";
 
 
 
@@ -38,6 +39,10 @@ function App() {
     {
       path: "/product/:id",
       element: <SingleProduct />
+    },
+    {
+      path: "/cart",
+      element: <Cart />
     },
     {
       path: "/profile",

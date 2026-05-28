@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { fetchProducts, setSelectedCategory, setSort } from "../store/reducers/productSlice";
 import Layout from "../components/Layout";
 import Hero from "../components/Hero";
+import Loader from "../components/Lodaer";
 
 const Home = () => {
 
@@ -100,9 +101,7 @@ const Home = () => {
 
 
     if (loading) {
-        return (<div>
-            <h1>Loading..</h1>
-        </div>)
+        return <Loader />
     }
     if (error) {
         return (<div>

@@ -10,7 +10,7 @@ import {
 import {
     FaStar,
     FaRegStar,
-    FaShoppingCart,
+
     FaHeart,
     FaTruck,
     FaShieldAlt,
@@ -18,6 +18,8 @@ import {
 } from "react-icons/fa";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
+import Loader from "../components/Lodaer";
+import Button from "../components/Button";
 
 const SingleProduct = () => {
 
@@ -52,21 +54,7 @@ const SingleProduct = () => {
     // LOADING
 
     if (loading) {
-        return (
-            <div className="flex justify-center items-center h-screen bg-gray-100">
-
-                <div className="animate-pulse space-y-6">
-
-                    <div className="w-72 h-72 bg-gray-300 rounded-3xl"></div>
-
-                    <div className="w-96 h-6 bg-gray-300 rounded"></div>
-
-                    <div className="w-72 h-6 bg-gray-300 rounded"></div>
-
-                </div>
-
-            </div>
-        );
+        return <Loader />
     }
 
 
@@ -264,7 +252,7 @@ const SingleProduct = () => {
 
                                     <div className="flex flex-wrap gap-3 mt-6">
 
-                                        <button
+                                        {/* <button
                                             className="flex items-center gap-2 bg-black hover:bg-gray-700 text-white px-5 py-2.5 rounded-md text-sm font-medium shadow-md transition duration-300"
                                         >
 
@@ -272,8 +260,13 @@ const SingleProduct = () => {
 
                                             Add To Cart
 
-                                        </button>
-
+                                        </button> */}
+                                        <Button
+                                            data={{
+                                                ...singleProduct,
+                                                quantity: quantity,
+                                            }}
+                                        />
 
 
                                         <button
