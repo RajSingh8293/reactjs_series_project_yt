@@ -1,20 +1,3 @@
-// import Button from "./Button"
-
-
-// const Footer = () => {
-//     const subscribe = () => {
-//         alert(`I have already Subscribeed`)
-//     }
-//     return (
-//         <div>
-//             {/* <Button /> */}
-//             <h1>Footer</h1>
-//             <Button name="Subscribe" handleClick={subscribe} />
-//         </div>
-//     )
-// }
-
-// export default Footer
 
 
 import {
@@ -257,3 +240,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

@@ -1,16 +1,15 @@
+
 const Loader = () => {
-
     return (
-
         <div className="fixed inset-0 bg-white/90 backdrop-blur-sm flex justify-center items-center z-50">
 
             <div className="flex flex-col items-center">
 
-                {/* OUTER SPINNER */}
+                {/* Outer spinner */}
 
                 <div className="relative w-24 h-24">
 
-                    {/* SPINNING BORDER */}
+                    {/* Spinner border */}
 
                     <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
 
@@ -18,7 +17,7 @@ const Loader = () => {
 
 
 
-                    {/* CENTER LOGO */}
+                    {/* Center logo*/}
 
                     <div className="absolute inset-0 flex items-center justify-center">
 
@@ -36,7 +35,7 @@ const Loader = () => {
 
 
 
-                {/* TEXT */}
+                {/* Text */}
 
                 <h2 className="mt-6 text-2xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                     Loading...
@@ -48,7 +47,7 @@ const Loader = () => {
 
 
 
-                {/* DOTS */}
+                {/* Dots */}
 
                 <div className="flex gap-2 mt-5">
 
@@ -69,8 +68,7 @@ const Loader = () => {
             </div>
 
         </div>
+    )
+}
 
-    );
-};
-
-export default Loader;
+export default Loader

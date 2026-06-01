@@ -7,10 +7,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css"
-import SingleProduct from "./pages/SingleProduct";
 import Register from "./pages/Register";
+import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
-
 
 
 function App() {
