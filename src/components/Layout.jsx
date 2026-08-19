@@ -3,7 +3,7 @@ import Footer from './Footer'
 
 const Layout = ({ children }) => {
     return (
-        <div  className="max-w-md mx-auto">
+        <div  className="max-w-7xl mx-auto">
             <Header />
             <main>
                 {children}
